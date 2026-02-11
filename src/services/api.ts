@@ -82,6 +82,7 @@ export interface SendMoneyResponse {
   success: boolean;
   message: string;
 }
+
 export async function sendMoneyApi(
   data: SendMoneyPayload,
 ): Promise<SendMoneyResponse> {
