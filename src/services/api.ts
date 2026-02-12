@@ -24,7 +24,6 @@ export interface SendMoneyResponse {
 }
 
 // ---- MOCK DATA ----
-
 const mockWallet: WalletResponse = {
   balance: 12500,
   currency: "DZD",
