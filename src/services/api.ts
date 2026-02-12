@@ -1,9 +1,3 @@
-import axios from "axios";
-
-export const api = axios.create({
-  baseURL: "https://mock.apibase.dev",
-});
-
 // ---- TYPES ----
 
 export interface WalletResponse {
@@ -17,6 +11,16 @@ export interface Transaction {
   type: "credit" | "debit";
   amount: number;
   date: string;
+}
+
+export interface SendMoneyPayload {
+  walletId: string;
+  amount: number;
+}
+
+export interface SendMoneyResponse {
+  success: boolean;
+  message: string;
 }
 
 // ---- MOCK DATA ----
@@ -62,10 +66,12 @@ const mockTransactions: Transaction[] = [
 
 // ---- MOCKED CALLS ----
 
+// Fetch Wallet API (mocked)
 export async function fetchWallet(): Promise<WalletResponse> {
   return new Promise((resolve) => setTimeout(() => resolve(mockWallet), 600));
 }
 
+// Fetch Transactions API (mocked)
 export async function fetchTransactions(): Promise<Transaction[]> {
   return new Promise((resolve) =>
     setTimeout(() => resolve(mockTransactions.slice(0, 5)), 600),
@@ -73,16 +79,6 @@ export async function fetchTransactions(): Promise<Transaction[]> {
 }
 
 // Sending Money API (mocked)
-export interface SendMoneyPayload {
-  walletId: string;
-  amount: number;
-}
-
-export interface SendMoneyResponse {
-  success: boolean;
-  message: string;
-}
-
 export async function sendMoneyApi(
   data: SendMoneyPayload,
 ): Promise<SendMoneyResponse> {
